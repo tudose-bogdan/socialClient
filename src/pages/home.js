@@ -10,7 +10,6 @@ class home extends Component {
     componentDidMount(){
         axios.get('/reviews')
             .then(res => {
-                console.log(res.data)
                 this.setState({
                     critics:res.data
                 })
@@ -22,10 +21,10 @@ class home extends Component {
 
     render() {
         let recentReviewsMarkup = this.state.critics ? (
-            this.state.critics.map((review) => <Review review={review}/> )
+            this.state.critics.map((review) => <Review key={review.criticId} review={review}/> )
         ) : <p>Loading...</p>
         return (
-            <Grid container spacing={16}>
+            <Grid container spacing={10}>
                 <Grid item sm={8} xs={12}>
                     {recentReviewsMarkup}
                 </Grid>
