@@ -5,7 +5,7 @@ import Review from '../components/Review'
 import Profile from '../components/Profile'
 class home extends Component {
     state = {
-        critics: null
+        critics: []
     }
 
     componentDidMount(){
