@@ -1,28 +1,30 @@
 import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid'
+import PropTypes from 'prop-types'
 import axios from 'axios'
 import Review from '../components/Review'
 import Profile from '../components/Profile'
+
+import {connect} from 'react-redux'
+
+import {getReviews} from '../redux/actions/dataActions'
+
+
 class home extends Component {
-    state = {
-        critics: []
-    }
+  
 
     componentDidMount(){
-        axios.get('/reviews')
-            .then(res => {
-                this.setState({
-                    critics:res.data
-                })
-            })
-            .catch(err => console.log(err))
+        this.props.getReviews();
+        
 
     }
 
 
     render() {
-        let recentReviewsMarkup = this.state.critics ? (
-            this.state.critics.map((review) => <Review key={review.criticId} review={review}/> )
+        const {reviews, loading} = this.props.data;
+
+        let recentReviewsMarkup = !loading ? (
+            reviews.map((review) => <Review key={review.criticId} review={review}/> )
         ) : <p>Loading...</p>
         return (
             <Grid container spacing={10}>
@@ -39,4 +41,15 @@ class home extends Component {
     }
 }
 
-export default home
+home.propTypes = {
+    getReviews: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired
+
+}
+
+
+const mapStateToProps = state => ({
+    data: state.data
+})
+
+export default connect(mapStateToProps,{getReviews})(home);
