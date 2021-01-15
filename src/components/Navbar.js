@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import MyButton from '../util/MyButton'
+import PostReview from './PostReview'
 
 //material ui 
 import AppBar from '@material-ui/core/AppBar';
@@ -22,9 +23,7 @@ class Navbar extends Component {
                 <Toolbar className='nav-container'>
                     {authenticated ?(
                         <Fragment>
-                            <MyButton tip="Create a post">
-                            <AddIcon />
-                            </MyButton>
+                          <PostReview/>
 
 
                             <Link to="/">

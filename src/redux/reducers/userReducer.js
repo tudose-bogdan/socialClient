@@ -41,7 +41,7 @@ export default function(state=initialState, action){
         case UNLIKE_REVIEW:
             return {
                 ...state,
-                likes: state.likes.filter((like) => like.criticId === action.payload.criticId)
+                likes: state.likes.filter((like) => like.criticId !== action.payload.criticId)
             };
         default:
             return state;
