@@ -24,7 +24,7 @@ class home extends Component {
         const {reviews, loading} = this.props.data;
 
         let recentReviewsMarkup = !loading ? (
-            reviews.map((review) => <Review key={review.reviewId} review={review}/> )
+            reviews.map((review) => <Review key={review.criticId} review={review}/> )
         ) : <p>Loading...</p>
         return (
             <Grid container spacing={10}>

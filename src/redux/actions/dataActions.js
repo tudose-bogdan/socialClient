@@ -57,8 +57,8 @@ export const postReview = (newReview) => (dispatch) => {
 }
 
 //Like a review
-export const likeReview = (reviewId) => (dispatch) => {
-    axios.get(`/critic/${reviewId}/like`)
+export const likeReview = (criticId) => (dispatch) => {
+    axios.get(`/critic/${criticId}/like`)
         .then(res => {
             dispatch({
                 type: LIKE_REVIEW,
@@ -70,8 +70,8 @@ export const likeReview = (reviewId) => (dispatch) => {
 
 
 //Unlike a review
-export const unlikeReview = (reviewId) => (dispatch) => {
-    axios.get(`/critic/${reviewId}/unlike`)
+export const unlikeReview = (criticId) => (dispatch) => {
+    axios.get(`/critic/${criticId}/unlike`)
         .then(res => {
             dispatch({
                 type: UNLIKE_REVIEW,

@@ -27,23 +27,23 @@ export default function(state = initialState, action) {
 
         case LIKE_REVIEW:
         case UNLIKE_REVIEW:
-            let index = state.reviews.findIndex((review) => review.reviewId === action.payload.criticId)
+            let index = state.reviews.findIndex((review) => review.criticId === action.payload.criticId)
             state.reviews[index] = action.payload;
-            if(state.review.reviewId === action.payload.criticId){
+            if(state.review.criticId === action.payload.criticId){
                 state.review = action.payload
             }
             return {
                 ...state
             };
         case DELETE_REVIEW:
-            index = state.reviews.findIndex( review => review.reviewId === action.payload);
+            index = state.reviews.findIndex( review => review.criticId === action.payload);
             state.reviews.splice(index,1);
             return {
                 ...state
             };
         case POST_REVIEW:
             var rev = action.payload;
-            rev['reviewId'] = action.payload.criticId;
+            rev['criticId'] = action.payload.criticId;
             return {
                 ...state,
                 reviews: [

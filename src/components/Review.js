@@ -42,10 +42,10 @@ class Review extends Component {
     
     render() {
         dayjs.extend(relativeTime)
-        const {classes, review: {body, createdAt, userImage, userHandle, reviewId, likeCount, commentCount},user:{authenticated, credentials: {handle}}} = this.props
+        const {classes, review: {body, createdAt, userImage, userHandle, criticId, likeCount, commentCount},user:{authenticated, credentials: {handle}}} = this.props
        
         const deleteButton = authenticated && userHandle === handle ? (
-                <DeleteReview criticId={reviewId}/>
+                <DeleteReview criticId={criticId}/>
         ) : null
         return (
         <Card className={classes.card}>
@@ -58,13 +58,13 @@ class Review extends Component {
                 {deleteButton}
                 <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
                 <Typography variant="body1">{body}</Typography>
-                <LikeButton criticId={reviewId}/>
+                <LikeButton criticId={criticId}/>
                 <span>{likeCount} Likes</span>
                 <MyButton tip="comments">
                     <ChatIcon color="primary"/>
                 </MyButton>
                 <span>{commentCount} Comments</span>
-                <ReviewDialog criticId={reviewId} userHandle={userHandle}/>
+                <ReviewDialog criticId={criticId} userHandle={userHandle}/>
             </CardContent>
         </Card>
         )

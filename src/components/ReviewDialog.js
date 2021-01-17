@@ -109,7 +109,7 @@ class ReviewDialog extends Component{
     }
 
     render(){
-        const {classes, review:{reviewId, body, createdAt, likeCount, commentCount, userImage, userHandle}, UI:{loading} } = this.props;
+        const {classes, review:{criticId, body, createdAt, likeCount, commentCount, userImage, userHandle}, UI:{loading} } = this.props;
          
         const dialogMarkup = loading ? (
             <div className={classes.spinnerDiv}>
@@ -138,7 +138,7 @@ class ReviewDialog extends Component{
                     <Typography variant="body1">
                         {body}
                     </Typography>
-                    <LikeButton criticId={reviewId}/>
+                    <LikeButton criticId={criticId}/>
                     <span>{likeCount} likes</span>
                     <MyButton tip="comments">
                     <ChatIcon color="primary"/>
