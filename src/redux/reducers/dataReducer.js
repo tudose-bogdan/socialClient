@@ -29,6 +29,9 @@ export default function(state = initialState, action) {
         case UNLIKE_REVIEW:
             let index = state.reviews.findIndex((review) => review.reviewId === action.payload.criticId)
             state.reviews[index] = action.payload;
+            if(state.review.reviewId === action.payload.criticId){
+                state.review = action.payload
+            }
             return {
                 ...state
             };
