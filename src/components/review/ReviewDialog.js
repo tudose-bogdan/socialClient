@@ -1,8 +1,10 @@
 import React, { Component, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import withStyles from '@material-ui/core/styles/withStyles'
-import MyButton from '../util/MyButton'
+import MyButton from '../../util/MyButton'
 import LikeButton from './LikeButton'
+import CommentForm from './CommentForm'
+import Comments from './Comments'
 import dayjs from 'dayjs'
 import {Link} from 'react-router-dom'
 //material ui stuff
@@ -19,9 +21,8 @@ import ChatIcon from '@material-ui/icons/Chat'
 
 //redux
 import {connect} from 'react-redux'
-import {getReview} from '../redux/actions/dataActions'
+import {getReview, clearErrors} from '../../redux/actions/dataActions'
 
-import theme from '../util/theme'
 
 const styles = theme => ({
     palette: {
@@ -90,6 +91,11 @@ const styles = theme => ({
         textAlign: 'center',
         marginTop: 50,
         marginBottom: 50
+    },
+    visibleSeparator: {
+        width:'100%',
+        borderBottom: '1px solid rgba(0,0,0,0.1)',
+        marginBottom: 20
     }
 
 });
@@ -106,10 +112,11 @@ class ReviewDialog extends Component{
 
     handleClose = () => {
         this.setState({open: false});
+        this.props.clearErrors();
     }
 
     render(){
-        const {classes, review:{criticId, body, createdAt, likeCount, commentCount, userImage, userHandle}, UI:{loading} } = this.props;
+        const {classes, review:{criticId, body, createdAt, likeCount, commentCount, userImage, userHandle, comments}, UI:{loading} } = this.props;
          
         const dialogMarkup = loading ? (
             <div className={classes.spinnerDiv}>
@@ -146,6 +153,10 @@ class ReviewDialog extends Component{
                 <span>{commentCount} Comments</span>
 
                 </Grid>
+
+                <hr className={classes.visibleSeparator}/>
+                <CommentForm criticId={criticId}/>
+                <Comments comments={comments}/>
             </Grid>
         )
 
@@ -173,6 +184,7 @@ class ReviewDialog extends Component{
 }
 
 ReviewDialog.propTypes = {
+    clearErrors: PropTypes.func.isRequired,
     getReview: PropTypes.func.isRequired,
     criticId: PropTypes.string.isRequired,
     userHandle: PropTypes.string.isRequired,
@@ -187,7 +199,8 @@ const mapStateToProps = state => ({
 })
 
 const mapActionsToProps = {
-    getReview
+    getReview,
+    clearErrors
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(ReviewDialog))

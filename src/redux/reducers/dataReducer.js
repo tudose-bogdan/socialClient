@@ -1,4 +1,4 @@
-import {SET_REVIEWS, LIKE_REVIEW, UNLIKE_REVIEW, LOADING_DATA, DELETE_REVIEW, POST_REVIEW,SET_ERRORS, SET_REVIEW} from '../types';
+import {SET_REVIEWS, LIKE_REVIEW, UNLIKE_REVIEW, LOADING_DATA, DELETE_REVIEW, POST_REVIEW,SET_ERRORS, SET_REVIEW, SUBMIT_COMMENT} from '../types';
 
 const initialState = { 
     reviews: [],
@@ -50,6 +50,15 @@ export default function(state = initialState, action) {
                    rev,
                     ...state.reviews
                 ]
+            };
+        case SUBMIT_COMMENT:
+            return {
+                ...state,
+                review: {
+                    ...state.review,
+                    comments: [action.payload, ...state.review.comments]
+                }
+
             };
         default:
             return state;
