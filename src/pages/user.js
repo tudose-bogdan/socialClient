@@ -9,11 +9,18 @@ import {getUserData} from '../redux/actions/dataActions'
 
 class user extends Component {
     state = {
-        profile: null
+        profile: null,
+        criticIdParam: null
     }
 
     componentDidMount(){
         const handle = this.props.match.params.handle;
+        const criticId = this.props.match.params.criticId;
+
+        if(criticId){
+            this.setState({criticIdParam: criticId});
+
+        }
 
         this.props.getUserData(handle);
 
@@ -28,12 +35,21 @@ class user extends Component {
 
     render() {
         const {reviews, loading} = this.props.data; 
+        const {criticIdParam} = this.state;
+
+
         const reviewsMarkup = loading ? (
             <p> Loading... </p>
         ) : reviews === null ? (
             <p> No reviews yet</p>
-        ) : (
+        ) : !criticIdParam ? (
             reviews.map(review => <Review key={review.criticId} review={review}/>)
+        ) : (
+            reviews.map(review => {
+                if(review.criticId !== criticIdParam)
+                    return <Review key={review.criticId} review={review}/>
+                else return  <Review key={review.criticId} review={review} openDialog/>
+            })
         )
         return (
             <Grid container spacing={10}>

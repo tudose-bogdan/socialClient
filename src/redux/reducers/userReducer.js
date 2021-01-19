@@ -1,4 +1,4 @@
-import {SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, LIKE_REVIEW, UNLIKE_REVIEW} from '../types';
+import {SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, LIKE_REVIEW, UNLIKE_REVIEW, MARK_NOTIFICATIONS_READ} from '../types';
 
 const initialState = {
     authenticated: false,
@@ -43,6 +43,12 @@ export default function(state=initialState, action){
                 ...state,
                 likes: state.likes.filter((like) => like.criticId !== action.payload.criticId)
             };
+        case MARK_NOTIFICATIONS_READ:
+                state.notifications.forEach((not) => (not.read = true));
+                return {
+                  ...state
+                };
+
         default:
             return state;
 

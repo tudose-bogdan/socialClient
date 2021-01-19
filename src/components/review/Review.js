@@ -64,7 +64,7 @@ class Review extends Component {
                     <ChatIcon color="primary"/>
                 </MyButton>
                 <span>{commentCount} Comments</span>
-                <ReviewDialog criticId={criticId} userHandle={userHandle}/>
+                <ReviewDialog criticId={criticId} userHandle={userHandle} openDialog={this.props.openDialog}/>
             </CardContent>
         </Card>
         )
@@ -75,7 +75,8 @@ Review.propTypes = {
     
     user: PropTypes.object.isRequired,
     review: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    openDialog: PropTypes.bool
 }
 
 const mapStateToProps = state => ({
