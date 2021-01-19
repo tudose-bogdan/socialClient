@@ -4,7 +4,6 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import MyButton from '../../util/MyButton'
 //Redux
 import {connect} from 'react-redux'
-import {editUserDetails} from '../../redux/actions/userActions'
 import {postReview, clearErrors } from '../../redux/actions/dataActions'
 //MUI Stuff
 import Button from '@material-ui/core/Button'
@@ -16,9 +15,6 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import AddIcon from '@material-ui/icons/Add'
 import CloseIcon from '@material-ui/icons/Close'
 
-//Icons 
-import EditIcon from '@material-ui/icons/Edit'
-import theme from '../../util/theme'
 
 const styles = theme => ({
     palette: {
@@ -115,7 +111,6 @@ class PostReview extends Component {
           };
 
         render(){
-            const {erorrs} = this.state;
             const {classes, UI:{loading}} = this.props;
             return (
                 <Fragment>

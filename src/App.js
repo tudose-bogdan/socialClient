@@ -22,7 +22,7 @@ import axios from 'axios';
 
 const theme = createMuiTheme(themeFile);
 
-
+axios.defaults.baseURL = 'https://europe-west1-socialcritic-ee17c.cloudfunctions.net/api'
 const token = localStorage.FBIdToken;
 if(token){
 

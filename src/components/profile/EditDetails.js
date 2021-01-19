@@ -14,7 +14,6 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogTitle from '@material-ui/core/DialogTitle'
 //Icons 
 import EditIcon from '@material-ui/icons/Edit'
-import theme from '../../util/theme'
 
 
 const styles = () => ({
@@ -49,7 +48,8 @@ const styles = () => ({
     },
     button: {
         marginTop: 20,
-        position: 'relative'
+        position: 'relative',
+        float: "right"
     },
     customError: {
         color:'red',
@@ -59,9 +59,7 @@ const styles = () => ({
     progress: {
         position: 'absolute'
     },
-    button: {
-        float: "right"
-    }
+  
 })
 
 

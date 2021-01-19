@@ -6,6 +6,10 @@ import StaticProfile from '../components/profile/StaticProfile'
 import Grid from '@material-ui/core/Grid'
 import {connect} from 'react-redux'
 import {getUserData} from '../redux/actions/dataActions'
+import ReviewSkeleton from '../util/ReviewSkeleton'
+import ProfileSkeleton from '../util/ProfileSkeleton'
+
+
 
 class user extends Component {
     state = {
@@ -39,7 +43,7 @@ class user extends Component {
 
 
         const reviewsMarkup = loading ? (
-            <p> Loading... </p>
+            <ReviewSkeleton/>
         ) : reviews === null ? (
             <p> No reviews yet</p>
         ) : !criticIdParam ? (
@@ -59,7 +63,7 @@ class user extends Component {
 
             <Grid item sm={4} xs={12}>
                 {this.state.profile === null ? (
-                    <p>Loading profile... </p>
+                    <ProfileSkeleton />
                 ): (
                 <StaticProfile profile={this.state.profile} />
 

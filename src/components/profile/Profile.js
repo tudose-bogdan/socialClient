@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom'
 import dayjs from 'dayjs'
 import EditDetails from './EditDetails'
 import MyButton from '../../util/MyButton'
+import ProfileSkeleton from '../../util/ProfileSkeleton'
+
 import Button from '@material-ui/core/Button'
 import {connect} from 'react-redux'
 import {logoutUser, uploadImage} from '../../redux/actions/userActions'
@@ -157,7 +159,7 @@ class Profile extends Component {
                   </Button>
               </div>
           </Paper> 
-       )) : (<p> Loading... </p>) 
+       )) : (<ProfileSkeleton/>) 
 
 
         return profileMarkup;
