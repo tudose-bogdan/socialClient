@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import {SET_REVIEWS, LIKE_REVIEW, UNLIKE_REVIEW, LOADING_DATA, DELETE_REVIEW, POST_REVIEW, SET_REVIEW, SUBMIT_COMMENT} from '../types';
 
 const initialState = { 
