@@ -6,12 +6,12 @@ import {Link} from 'react-router-dom'
 import MuiLink from '@material-ui/core/Link'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-
+import MyButton from '../../util/MyButton'
 //Icons
 import LocationOn from '@material-ui/icons/LocationOn'
 import LinkIcon from '@material-ui/icons/Link'
 import CalendarToday from '@material-ui/icons/CalendarToday'
-
+import PlusOneIcon from '@material-ui/icons/PlusOne';
 
 const styles = (theme) => ({
     paper:{
@@ -100,7 +100,7 @@ const StaticProfile = (props) => {
                 )}
                 <CalendarToday color="primary"/>{' '}
                 <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
-
+    
                 </div>   
     
                </div>

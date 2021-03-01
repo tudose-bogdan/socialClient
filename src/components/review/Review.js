@@ -15,7 +15,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Typography  from '@material-ui/core/Typography'
 //Icons
 import ChatIcon from '@material-ui/icons/Chat'
-
+import ContactMailIcon from '@material-ui/icons/ContactMail';
 
 
 //Redux
@@ -34,19 +34,41 @@ const styles = {
     content:{
         padding: 25,
         objectFit: 'cover'
-    }
+    },
+    plusOne: {
+        position: 'absolute',
+        left: '90%',
+        top: '5%'
+        
+    },
 
 }
 
 class Review extends Component {
     
+    handlePlusOne = () => {
+
+        alert('Sent!')
+    }
+
     render() {
         dayjs.extend(relativeTime)
         const {classes, review: {body, createdAt, userImage, userHandle, criticId, likeCount, commentCount},user:{authenticated, credentials: {handle}}} = this.props
        
         const deleteButton = authenticated && userHandle === handle ? (
                 <DeleteReview criticId={criticId}/>
+                
+                
         ) : null
+            
+        const plusOneButton = authenticated && userHandle !== handle ? (
+            <MyButton onClick={this.handlePlusOne} tip="Contact user" btnClassName="button" tipClassName={classes.plusOne}>
+            <ContactMailIcon color="primary"/>
+   
+         </MyButton>
+            
+            
+    ) : null
         return (
         <Card className={classes.card}>
             <CardMedia image={userImage}
@@ -55,6 +77,7 @@ class Review extends Component {
             <CardContent className={classes.content}>
                 <Typography variant="h5" component={Link} to={`/users/${userHandle}`}
                     color="primary">{userHandle}</Typography>
+                
                 {deleteButton}
                 <Typography variant="body2" color="textSecondary">{dayjs(createdAt).fromNow()}</Typography>
                 <Typography variant="body1">{body}</Typography>
@@ -65,6 +88,9 @@ class Review extends Component {
                 </MyButton>
                 <span>{commentCount} Comments</span>
                 <ReviewDialog criticId={criticId} userHandle={userHandle} openDialog={this.props.openDialog}/>
+                {plusOneButton}
+
+                
             </CardContent>
         </Card>
         )

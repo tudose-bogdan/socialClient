@@ -5,11 +5,12 @@ import PropTypes from 'prop-types'
 import MyButton from '../../util/MyButton'
 import PostReview from '../review/PostReview'
 import Notifications from './Notifications'
-
+import MuiLink from '@material-ui/core/Link'
 //material ui 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 //Icons
 import HomeIcon from '@material-ui/icons/Home'
 

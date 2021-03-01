@@ -18,6 +18,7 @@ import home from './pages/home';
 import login from './pages/login';
 import signup from './pages/signup';
 import user from './pages/user';
+import contact from './pages/contact'
 import axios from 'axios';
 import statistics from './pages/statistics';
 
@@ -56,6 +57,8 @@ class App extends Component{
       <AuthRoute exact path="/signup" component={signup}  />
       <Route exact path="/users/:handle" component={user} />
       <Route exact path="/users/:handle/critic/:criticId" component={user} />
+      <Route exact path="/users/contact" component={contact}/>
+
 
     </Switch>
     
